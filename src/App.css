@@ -1,6 +1,14 @@
+.aml-digit-font {
+  font-size: 33px;
+  font-weight: 300;
+}
 .aml-font {
   font-size: 14px;
   font-weight: 500;
+}
+.aml-font-bold {
+  font-size: 14px;
+  font-weight: bold;
 }
 .aml-nav {
   background-color: white;
@@ -10,7 +18,7 @@
 }
 .nav-brand {
   background-color: #4abff0;
-  margin: 0px 0px;
+  margin-right: 20px;
   padding: 10px;
 }
 .nav-div-item {
@@ -44,4 +52,48 @@
 }
 .nav-item-active {
   border-bottom: 4px solid #24c5d9;
+}
+.tabbed-navigator div:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-clip: padding-box;
+}
+.tabbed-navigator div:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-right: 1px solid #f3f6ff;
+  background-clip: padding-box;
+}
+.tabbed-navigator > div {
+  padding: 5px 20px;
+  border-left: 1px solid #f3f6ff;
+  border-top: 1px solid #f3f6ff;
+  border-bottom: 1px solid #f3f6ff;
+  color: #7938d0;
+  background-color: #fcfdfe;
+  font-size: 12px;
+}
+.tabbed-navigator > div:hover {
+  background-color: #7938d0;
+  color: white;
+}
+.tab-active {
+  background-color: #7938d0;
+  color: white;
+}
+.t-l-c-round {
+  border-top-left-radius: 8px;
+  background-clip: padding-box;
+}
+.b-l-c-round {
+  border-bottom-left-radius: 8px;
+  background-clip: padding-box;
+}
+.t-r-c-round {
+  border-top-right-radius: 8px;
+  background-clip: padding-box;
+}
+.b-r-c-round {
+  border-bottom-right-radius: 8px;
+  background-clip: padding-box;
 }
