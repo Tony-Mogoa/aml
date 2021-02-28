@@ -6,12 +6,12 @@ const TransactionAlert = ({ customerName, alertText }) => {
   return (
     <div className="d-flex flex-row aml-font shadow-sm rounded m-3 p-2 border align-items-center border-light">
       <IoNotificationsCircle size={36} color={colors.yellow} className="mr-1" />
-      <span style={{ width: 450, color: colors.grey }}>
+      <span style={{ width: 400, color: colors.grey }}>
         Customer <span style={{ color: colors.fontBlue }}>{customerName}</span>{" "}
         {alertText}
       </span>
       <div className="btn-group dropend">
-        <button
+        {/* <button
           type="button"
           className="btn btn-secondary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -19,15 +19,15 @@ const TransactionAlert = ({ customerName, alertText }) => {
           id="dropdownMenuButton1"
         >
           Dropright
-        </button>
-        {/* <HiDotsVertical
+        </button> */}
+        <HiDotsVertical
           color={colors.skyblue}
           size={20}
           className="dropdown-toggle"
           data-bs-toggle="dropdown"
           aria-expanded="false"
           id="dropdownMenuButton1"
-        /> */}
+        />
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
             <a className="dropdown-item">Action</a>
