@@ -23,7 +23,6 @@ const browsers = [
   { label: "Unassigned", usage: 35 },
 ];
 
-console.log(browsers);
 // accessor functions
 const usage = (d) => d.usage; // browser usage;
 
