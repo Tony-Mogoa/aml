@@ -1,125 +1,179 @@
-import React, { Component } from "react";
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import React, { useState } from "react";
+import Pie from "@visx/shape/lib/shapes/Pie";
+import { scaleOrdinal } from "@visx/scale";
+import { Group } from "@visx/group";
+import { animated, useTransition, interpolate } from "react-spring";
+import { colors } from "../constants/colors";
 
-const data = [
-  { name: "Fradulent", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+// data and types
+
+const data = {
+  Legitimate: 124,
+  Fradulent: 74,
+  Unassigned: 35,
+};
+
+const browserNames = Object.keys(data).filter((k) => k);
+const browsers = [
+  {
+    label: "Legitimate",
+    usage: 124,
+  },
+  { label: "Fradulent", usage: 74 },
+  { label: "Unassigned", usage: 35 },
 ];
 
-const renderActiveShape = (props) => {
-  const RADIAN = Math.PI / 180;
-  const {
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    startAngle,
-    endAngle,
-    fill,
-    payload,
-    percent,
-    value,
-  } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? "start" : "end";
+console.log(browsers);
+// accessor functions
+const usage = (d) => d.usage; // browser usage;
+
+// color scales
+const getBrowserColor = scaleOrdinal({
+  domain: browserNames,
+  range: [colors.legitimate, colors.fradulent, colors.unassigned],
+});
+
+const defaultMargin = { top: 5, right: 20, bottom: 0, left: 20 };
+
+const DonutPlot = ({
+  width,
+  height,
+  margin = defaultMargin,
+  animate = true,
+}) => {
+  const [selectedBrowser, setSelectedBrowser] = useState(null);
+
+  if (width < 10) return null;
+
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+  const radius = Math.min(innerWidth, innerHeight) / 2;
+  const centerY = innerHeight / 2;
+  const centerX = innerWidth / 2;
+  const donutThickness = 20;
 
   return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-      <path
-        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
-        fill="none"
-      />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        textAnchor={textAnchor}
-        fill="#333"
-      >{`PV ${value}`}</text>
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        dy={18}
-        textAnchor={textAnchor}
-        fill="#999"
-      >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
-      </text>
-    </g>
+    <div className="d-flex flex-column justify-content-center">
+      <svg width={width} height={height}>
+        <Group top={centerY + margin.top} left={centerX + margin.left}>
+          <Pie
+            data={
+              selectedBrowser
+                ? browsers.filter(({ label }) => label === selectedBrowser)
+                : browsers
+            }
+            pieValue={usage}
+            outerRadius={radius}
+            innerRadius={radius - donutThickness}
+            cornerRadius={3}
+            padAngle={0.005}
+          >
+            {(pie) => (
+              <AnimatedPie
+                {...pie}
+                animate={animate}
+                getKey={(arc) => arc.data.label}
+                onClickDatum={({ data: { label } }) =>
+                  animate &&
+                  setSelectedBrowser(
+                    selectedBrowser && selectedBrowser === label ? null : label
+                  )
+                }
+                getColor={(arc) => getBrowserColor(arc.data.label)}
+              />
+            )}
+          </Pie>
+        </Group>
+      </svg>
+      <div>
+        <div className="d-flex flex-row aml-font">
+          <div className="d-flex flex-column justify-content-end">
+            <span
+              className="mr-2 sm-rounded-box"
+              style={{ backgroundColor: colors.legitimate }}
+            >
+              {data.Legitimate}
+            </span>
+            <span
+              className="mr-2 sm-rounded-box"
+              style={{ backgroundColor: colors.fradulent }}
+            >
+              {data.Fradulent}
+            </span>
+            <span
+              className="mr-2 sm-rounded-box"
+              style={{ backgroundColor: colors.unassigned }}
+            >
+              {data.Unassigned}
+            </span>
+          </div>
+          <div className="d-flex flex-column justify-content-start">
+            <span className="m-1">Verified as legitimate</span>
+            <span className="m-1">Confirmed as fradulent</span>
+            <span className="m-1">Unassigned</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-class DonutPlot extends Component {
-  state = {
-    activeIndex: 0,
-  };
+// react-spring transition definitions
 
-  onPieEnter = (_, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
+const fromLeaveTransition = ({ endAngle }) => ({
+  // enter from 360° if end angle is > 180°
+  startAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
+  endAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
+  opacity: 0,
+});
+const enterUpdateTransition = ({ startAngle, endAngle }) => ({
+  startAngle,
+  endAngle,
+  opacity: 1,
+});
 
-  render() {
-    return (
-      <ResponsiveContainer width={300} height={300}>
-        <PieChart
-          width={400}
-          height={400}
-          margin={{
-            top: 5,
-            right: 0,
-            left: 0,
-            bottom: 5,
-          }}
-        >
-          <Pie
-            activeIndex={this.state.activeIndex}
-            activeShape={renderActiveShape}
-            data={data}
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-          />
-        </PieChart>
-      </ResponsiveContainer>
-    );
-  }
+function AnimatedPie({ animate, arcs, path, getKey, getColor, onClickDatum }) {
+  const transitions = useTransition(
+    arcs,
+    getKey,
+    // @ts-ignore react-spring doesn't like this overload
+    {
+      from: animate ? fromLeaveTransition : enterUpdateTransition,
+      enter: enterUpdateTransition,
+      update: enterUpdateTransition,
+      leave: animate ? fromLeaveTransition : enterUpdateTransition,
+    }
+  );
+  return (
+    <>
+      {transitions.map(({ item: arc, props, key }) => {
+        const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
+
+        return (
+          <g key={key}>
+            <animated.path
+              // compute interpolated path d attribute from intermediate angle values
+              d={interpolate(
+                [props.startAngle, props.endAngle],
+                (startAngle, endAngle) =>
+                  path({
+                    ...arc,
+                    startAngle,
+                    endAngle,
+                  })
+              )}
+              fill={getColor(arc)}
+              onClick={() => onClickDatum(arc)}
+              onTouchStart={() => onClickDatum(arc)}
+            />
+            {hasSpaceForLabel && (
+              <animated.g style={{ opacity: props.opacity }}></animated.g>
+            )}
+          </g>
+        );
+      })}
+    </>
+  );
 }
 
 export default DonutPlot;

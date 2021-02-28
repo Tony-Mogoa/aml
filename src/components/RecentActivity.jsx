@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { colors } from "../constants/colors";
-import BarGraph from "./BarGraph";
-import DonutPlot from "./DonutPlot";
 import TabbedNavigator from "./TabbedNavigator";
+import BarChart from "./BarChart";
+import DonutPlot from "./DonutPlot";
+
 class RecentActivity extends Component {
   state = {
     tabs: [
@@ -17,7 +18,7 @@ class RecentActivity extends Component {
   };
   render() {
     return (
-      <div className="d-flex flex-column bg-white mx-2 rounded mt-5 p-2">
+      <div className="d-flex flex-column bg-white mx-3 rounded mt-3 p-2">
         <div className="d-flex flex-row justify-content-between m-2">
           <div>
             <HiDotsVertical color={colors.skyblue} size={20} className="ml-2" />
@@ -28,7 +29,7 @@ class RecentActivity extends Component {
             onSwitch={() => alert("todo")}
           />
         </div>
-        <div className="d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between align-items-center">
           <div
             className="d-inline-flex flex-column p-2 ml-4 text-white"
             id="transaction-count"
@@ -54,8 +55,8 @@ class RecentActivity extends Component {
               </span>
             </div>
           </div>
-          <BarGraph />
-          <DonutPlot />
+          <BarChart width={800} height={330} />
+          <DonutPlot width={200} height={200} />
         </div>
       </div>
     );
