@@ -1,123 +1,126 @@
 .aml-digit-font {
-  font-size: 33px;
-  font-weight: 300;
+    font-size: 33px;
+    font-weight: 300;
 }
 .aml-font {
-  font-size: 14px;
-  font-weight: 500;
-  font-family: "Noto Sans HK", sans-serif !important;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Noto Sans HK", sans-serif !important;
+}
+.aml-font-grey {
+    color: #c0c5c8 !important;
 }
 .aml-font-bold {
-  font-size: 14px;
-  font-weight: bold;
+    font-size: 14px;
+    font-weight: bold;
 }
 .aml-nav {
-  background-color: white;
+    background-color: white;
 }
 .bg-violet {
-  background-color: #7938d0;
+    background-color: #7938d0;
 }
 .clickable-text {
-  color: #39cbdd;
-  cursor: pointer;
+    color: #39cbdd;
+    cursor: pointer;
 }
 .leftmost-nav-item {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 .nav-brand {
-  background-color: #4abff0;
-  margin-right: 20px;
-  padding: 10px;
+    background-color: #4abff0;
+    margin-right: 20px;
+    padding: 10px;
 }
 .nav-div-item {
-  margin: 0px 5px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0px 15px;
-  color: #7d7d7d;
+    margin: 0px 5px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px 15px;
+    color: #7d7d7d;
 }
 .nav-div-item:hover {
-  color: #24c5d9;
+    color: #24c5d9;
 }
 .nav-item-text {
-  margin-left: 5px;
+    margin-left: 5px;
 }
 .p-circles {
-  border: 2px solid #dee2e6 !important;
-  background-clip: padding-box;
+    border: 2px solid #dee2e6 !important;
+    background-clip: padding-box;
 }
 .round-bg-icon {
-  height: auto;
-  display: block;
-  margin: auto;
+    height: auto;
+    display: block;
+    margin: auto;
 }
 .text-input {
-  border-radius: 10px !important;
-  border: 1px solid #d6d6d6;
-  padding: 5px 10px !important;
+    border-radius: 10px !important;
+    border: 1px solid #d6d6d6;
+    padding: 5px 10px !important;
 }
 .text-input:focus {
-  outline: none;
+    outline: none;
 }
 .vertical-separator {
-  border-right: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
 }
 .nav-item-active {
-  border-bottom: 4px solid #24c5d9;
+    border-bottom: 4px solid #24c5d9;
 }
 .tabbed-navigator div:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-clip: padding-box;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-clip: padding-box;
 }
 .tabbed-navigator div:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-right: 1px solid #f3f6ff;
-  background-clip: padding-box;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: 1px solid #f3f6ff;
+    background-clip: padding-box;
 }
 .tabbed-navigator > div {
-  padding: 5px 20px;
-  border-left: 1px solid #f3f6ff;
-  border-top: 1px solid #f3f6ff;
-  border-bottom: 1px solid #f3f6ff;
-  color: #7938d0;
-  background-color: #fcfdfe;
-  font-size: 12px;
+    padding: 5px 20px;
+    border-left: 1px solid #f3f6ff;
+    border-top: 1px solid #f3f6ff;
+    border-bottom: 1px solid #f3f6ff;
+    color: #7938d0;
+    background-color: #fcfdfe;
+    font-size: 12px;
 }
 .tabbed-navigator > div:hover {
-  background-color: #7938d0;
-  color: white;
+    background-color: #7938d0;
+    color: white;
 }
 .tab-active {
-  background-color: #7938d0;
-  color: white;
+    background-color: #7938d0;
+    color: white;
 }
 .t-l-c-round {
-  border-top-left-radius: 8px;
-  background-clip: padding-box;
+    border-top-left-radius: 8px;
+    background-clip: padding-box;
 }
 .b-l-c-round {
-  border-bottom-left-radius: 8px;
-  background-clip: padding-box;
+    border-bottom-left-radius: 8px;
+    background-clip: padding-box;
 }
 .t-r-c-round {
-  border-top-right-radius: 8px;
-  background-clip: padding-box;
+    border-top-right-radius: 8px;
+    background-clip: padding-box;
 }
 
 .b-r-c-round {
-  border-bottom-right-radius: 8px;
-  background-clip: padding-box;
+    border-bottom-right-radius: 8px;
+    background-clip: padding-box;
 }
 .sm-rounded-box {
-  border-radius: 5px;
-  background-clip: padding-box;
-  padding: 3px 8px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 12px;
-  margin: 2px;
+    border-radius: 5px;
+    background-clip: padding-box;
+    padding: 3px 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    margin: 2px;
 }
