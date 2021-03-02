@@ -77,12 +77,14 @@ class ClientProfile extends Component {
                 <table className="table aml-font align-middle mx-2">
                     <tbody>
                         <tr>
-                            <div
-                                style={{ color: colors.violet }}
-                                className="aml-font-bold m-1"
-                            >
-                                CONTACT
-                            </div>
+                            <td>
+                                <div
+                                    style={{ color: colors.violet }}
+                                    className="aml-font-bold m-1"
+                                >
+                                    CONTACT
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -132,16 +134,17 @@ class ClientProfile extends Component {
                         </tr>
 
                         <tr>
-                            <div
-                                style={{ color: colors.violet }}
-                                className="aml-font-bold m-1"
-                            >
-                                EMPLOYER
-                            </div>
+                            <td>
+                                <div
+                                    style={{ color: colors.violet }}
+                                    className="aml-font-bold m-1"
+                                >
+                                    EMPLOYER
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>
-                                {" "}
                                 <div className="aml-font d-flex flex-column justify-content-start mx-1 my-1">
                                     <span style={{ color: colors.grey }}>
                                         Job Title
@@ -184,12 +187,14 @@ class ClientProfile extends Component {
                         </tr>
 
                         <tr>
-                            <div
-                                style={{ color: colors.violet }}
-                                className="aml-font-bold m-1"
-                            >
-                                FAMILY
-                            </div>
+                            <td>
+                                <div
+                                    style={{ color: colors.violet }}
+                                    className="aml-font-bold m-1"
+                                >
+                                    FAMILY
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>

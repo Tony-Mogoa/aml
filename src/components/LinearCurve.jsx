@@ -47,7 +47,7 @@ const format = timeFormat("%b");
 const formatDate = (date) => format(date);
 
 // scales
-console.log(extent(allData, getX));
+
 const xScale = scaleTime({
     domain: extent(allData, getX),
 });

@@ -37,7 +37,11 @@ class AccountActivity extends Component {
                 </div>
                 <div className="d-flex flex-row justify-content-start">
                     {this.state.accountDetails.map((detail) => (
-                        <DetailItem detail={detail} />
+                        <DetailItem
+                            key={detail.title}
+                            detail={detail}
+                            styleClass="my-2 mx-4"
+                        />
                     ))}
                 </div>
                 <LinearCurve width={630} height={400} />
