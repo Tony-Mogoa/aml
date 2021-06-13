@@ -11,8 +11,8 @@
     color: #c0c5c8 !important;
 }
 .aml-font-bold {
-    /* font-size: 14px; */
-    /* font-weight: bold; */
+    font-size: 14px;
+    font-weight: bold;
 }
 .aml-nav {
     background-color: white;
